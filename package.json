@@ -1,0 +1,20 @@
+{
+  "name": "savvy",
+  "private": true,
+  "version": "1.0.0",
+  "devDependencies": {
+    "@biomejs/biome": "2.1.2",
+    "concurrently": "^9.2.0"
+  },
+  "packageManager": "pnpm@10.13.1",
+  "scripts": {
+    "dev:web": "pnpm --filter web dev",
+    "dev:api": "pnpm --filter api start:dev",
+    "dev": "concurrently \"pnpm dev:api\" \"pnpm dev:web\"",
+    "format": "biome format . --write",
+    "lint": "biome lint .",
+    "fix": "biome check --write ./apps",
+    "web:lint": "biome lint apps/web",
+    "api:lint": "biome lint apps/api"
+  }
+}
