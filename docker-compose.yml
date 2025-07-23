@@ -2,7 +2,6 @@ version: '3.8'
 
 services:
   api:
-    container_name: savvy_backend
     build: apps/api
     volumes:
       - ./apps/api:/app
@@ -11,9 +10,10 @@ services:
     depends_on:
       - db
       - redis
+    networks:
+      - savvy_network
 
   web:
-    container_name: savvy_frontend
     build: apps/web
     volumes:
       - ./apps/web:/app
@@ -21,9 +21,10 @@ services:
       - "5173:5173"
     depends_on:
       - api
+    networks:
+      - savvy_network
   
   db:
-    container_name: savvy_postgres
     image: postgres:17.5
     environment:
       POSTGRES_USER: postgres
@@ -33,12 +34,19 @@ services:
       - pgdata:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    networks:
+      - savvy_network
   
   redis:
-    container_name: savvy_redis
     image: redis:8.0.3
     ports:
       - "6379:6379"
+    networks:
+      - savvy_network
 
 volumes:
   pgdata:
+
+networks:
+  savvy_network:
+    driver: bridge
