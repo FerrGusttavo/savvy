@@ -6,9 +6,9 @@ interface Timestamps {
   updatedAt: Date
 }
 
-export abstract class TimestampedEntity<
-  Props extends Timestamps,
-> extends Entity<Props> {
+export abstract class TimestampedEntity<Props> extends Entity<
+  Props & Timestamps
+> {
   get createdAt() {
     return this.props.createdAt
   }
@@ -16,17 +16,14 @@ export abstract class TimestampedEntity<
     return this.props.updatedAt
   }
 
-  protected constructor(
-    props: Omit<Props, 'createdAt' | 'updatedAt'> & Partial<Timestamps>,
-    id?: UniqueEntityID,
-  ) {
+  protected constructor(props: Props, id?: UniqueEntityID) {
     const now = new Date()
     super(
       {
         ...props,
-        createdAt: props.createdAt ?? now,
-        updatedAt: props.updatedAt ?? now,
-      } as Props,
+        createdAt: now,
+        updatedAt: now,
+      } as Props & Timestamps,
       id,
     )
   }
