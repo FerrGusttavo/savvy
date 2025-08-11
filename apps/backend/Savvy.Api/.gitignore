@@ -1,0 +1,59 @@
+# Build outputs
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio files
+.vs/
+
+# NuGet package folders
+packages/
+
+# NuGet restore files
+*.nupkg
+*.snupkg
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Publish output
+publish/
+
+# Logs
+*.log
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Rider IDE
+.idea/
+
+# Dotnet watch files
+dotnet-watch.json
+
+# Coverage
+coverage.*
+
+# VS Code settings
+.vscode/
+
+# Environment variables files
+.env
+.env.local
+.env.*.local
+
+# IIS Express
+IISExpress/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Mac OS metadata
+.DS_Store
